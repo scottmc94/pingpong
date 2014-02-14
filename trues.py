@@ -32,19 +32,4 @@ for rep in report:
   x += 1
   print x,rep[0], "%.2f" % rep[1], "%.2f" % rep[2]
 
-#x = 0
-#for rep in report:
-#  if x == 0: 
-#    print rep[0]," vs ",
-#    x = 1
-#  else:
-#    print rep[0]
-#    x = 0
-#
-#print
-#print
-#for rep in report:
-#  print rep[0]+";",
-#print  quality_1vs1(players['mmesser'],players['msamples'])
-#print  quality_1vs1(players['sshepherd'],players['dtoumey'])
 
