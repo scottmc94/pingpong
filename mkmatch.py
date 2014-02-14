@@ -27,5 +27,9 @@ for line in file:
 	if first == mysp[3]: 
 		swins += 1
 	match = int(mysp[1])
+
+fin.write('%d,%d,' % (match,match))
+if fwins > swins: fin.write('%s,%s,%s,%d,%d\n' % (first,second,date,fwins,swins))
+if fwins < swins: fin.write('%s,%s,%s,%d,%d\n' % (second,first,date,swins,fwins))
 file.close()
 fin.close()
