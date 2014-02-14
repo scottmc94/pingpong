@@ -4,38 +4,20 @@
 
 
 from trueskill import Rating, quality_1vs1, rate_1vs1
+
+file = open("games.txt","r")
+#file = open("matches.txt","r")
+
 players = {}
 report = []
 
-players['asmith'] = Rating()
-players['atoumey']= Rating()
-players['cbrake'] = Rating()
-players['cdunbar'] = Rating()
-players['drichardson'] = Rating()
-players['dtoumey'] = Rating()
-players['jenders'] = Rating()
-players['jgoller'] = Rating()
-players['jgross'] = Rating()
-players['jklee'] = Rating()
-players['jroberts'] = Rating()
-players['jshaffer'] = Rating()
-players['kmoore'] = Rating()
-players['mhodson'] = Rating()
-players['mkussow'] = Rating()
-players['mmesser'] = Rating()
-players['mparker'] = Rating()
-players['mrowe'] = Rating()
-players['msamples'] = Rating()
-players['mweston'] = Rating()
-players['smcpheeters'] = Rating()
-players['sshepherd'] = Rating()
-players['wnorton'] = Rating()
 #players['neverplayed'] = Rating()
 
-file = open("games.txt","r")
 
 for line in file:
   mysp = line.rstrip('\n').split(",")
+  if mysp[2] not in players: players[mysp[2]] = Rating()
+  if mysp[3] not in players: players[mysp[3]] = Rating()
   players[mysp[2]],players[mysp[3]] = rate_1vs1(players[mysp[2]],players[mysp[3]])
   print mysp[0],mysp[1],mysp[2], "%.2f" % players[mysp[2]].mu, "%.2f" % players[mysp[2]].sigma, mysp[4]
   print mysp[0],mysp[1],mysp[3],"%.2f" % players[mysp[3]].mu, "%.2f" % players[mysp[3]].sigma,mysp[4]
