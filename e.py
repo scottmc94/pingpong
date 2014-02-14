@@ -27,7 +27,7 @@ for line in file:
 	players.append(m[3])
 
 players = list(set(players))
-
+print "Last game entered: %s %s %s vs %s %s" % (m[0],m[1],m[2],m[3],m[4])
 x = 0
 while x == 0:
 	winner = raw_input('Enter Winner: ')
@@ -55,7 +55,6 @@ else:
 	loses = 0
 
 ans = raw_input('Is this date correct? ' + time.strftime("%Y-%m-%d") + ' (Y)/N ')
-print ans.lower()
 if ans.lower() == 'n':
 	mydate = raw_input('Enter date YYYY-MM-DD: ')
 else:
