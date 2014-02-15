@@ -38,8 +38,9 @@ for line in file:
 for key in players:
   report.append((key, players[key].mu, players[key].sigma))
 
-x = 0 
 report.sort(key=lambda tup: -tup[1])
+
+
 fname = "/var/www/pong/index.html"
 ht = open(fname,"w")
 ht.write("<!DOCTYPE html>\n")
@@ -53,8 +54,12 @@ ht.write("<h1>Ratings from Ladder Matches</h1>\n")
 ht.write("as of: %s %s vs %s %s-%s<p>\n" % (mysp[4],mysp[2],mysp[3],mysp[5],mysp[6]))
 ht.write('<table class="bordered">\n')
 ht.write("<thead><tr>\n\t<th>Rank</th>\n\t<th>Name</th>\n\t<th>Record</th>\n\t<th>Rating</th>\n\t<th>Sigma</th>\n</tr></thead>\n")
+
+
+x = 0 
 for rep in report:
   x += 1
+  print rep[0],";",
   print x,rep[0], "%.2f" % rep[1], "%.2f" % rep[2]
   ht.write("<tr>\n\t<td>%d</td>\n\t<td><a href=%s.html>%s</a></td>\n\t<td>%d-%d</td><td>%.2f</td>\n\t<td>%.2f</td>\n</tr>" % (x,rep[0],rep[0],pwin[rep[0]],plos[rep[0]],rep[1],rep[2]))
 ht.write("</table>\n")
@@ -64,11 +69,8 @@ ht.close()
 fname = None
 ht = None
 
-
-
 for k in pm:
     pm[k].sort(reverse=True)
-
 
 for k in pm:
     fname = "/var/www/pong/"+k+".html"
