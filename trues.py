@@ -45,26 +45,26 @@ fname = "/var/www/pong/index.html"
 ht = open(fname,"w")
 ht.write("<!DOCTYPE html>\n")
 ht.write("<html>\n")
-ht.write("<head>\n")
-ht.write('<link rel="stylesheet" type="text/css" href="pingpong.css">\n')
-ht.write("<title>Ping Pong Ratings</title>\n")
-ht.write("</head>\n")
-ht.write("<body>\n")
-ht.write("<h1>Ratings from Ladder Matches</h1>\n")
-ht.write("as of: %s %s vs %s %s-%s<p>\n" % (mysp[4],mysp[2],mysp[3],mysp[5],mysp[6]))
-ht.write('<table class="bordered">\n')
-ht.write("<thead><tr>\n\t<th>Rank</th>\n\t<th>Name</th>\n\t<th>Record</th>\n\t<th>Rating</th>\n\t<th>Sigma</th>\n</tr></thead>\n")
+ht.write("\t<head>\n")
+ht.write('\t\t<link rel="stylesheet" type="text/css" href="pingpong.css">\n')
+ht.write("\t\t<title>Ping Pong Ratings</title>\n")
+ht.write("\t</head>\n")
+ht.write("\t<body>\n")
+ht.write("\t\t<h1>Ratings from Ladder Matches</h1>\n")
+ht.write("\t\t<p>as of: %s %s vs %s %s-%s</p>\n" % (mysp[4],mysp[2],mysp[3],mysp[5],mysp[6]))
+ht.write('\t\t<table class="bordered" summary="Ranking of Rating by player">\n')
+ht.write("\t\t\t<thead>\n\t\t\t\t<tr>\n\t\t\t\t\t<th>Rank</th>\n\t\t\t\t\t<th>Name</th>\n\t\t\t\t\t<th>Record</th>\n\t\t\t\t\t<th>Rating</th>\n\t\t\t\t\t<th>Sigma</th>\n\t\t\t\t</tr>\n\t\t\t</thead>\n")
 
 
 x = 0 
 for rep in report:
   x += 1
-  print rep[0],";",
+  #print rep[0],";",
   print x,rep[0], "%.2f" % rep[1], "%.2f" % rep[2]
-  ht.write("<tr>\n\t<td>%d</td>\n\t<td><a href=%s.html>%s</a></td>\n\t<td>%d-%d</td><td>%.2f</td>\n\t<td>%.2f</td>\n</tr>" % (x,rep[0],rep[0],pwin[rep[0]],plos[rep[0]],rep[1],rep[2]))
+  ht.write("\t\t\t<tr>\n\t\t\t\t<td>%d</td>\n\t\t\t\t<td><a href=%s.html>%s</a></td>\n\t\t\t\t<td>%d-%d</td>\n\t\t\t<td>%.2f</td>\n\t\t\t\t<td>%.2f</td>\n\t\t</tr>\n" % (x,rep[0],rep[0],pwin[rep[0]],plos[rep[0]],rep[1],rep[2]))
 ht.write("</table>\n")
 ht.write("<p>")
-ht.write("Rating value follows player's win/draw/lose records. Higher value means higher game skill. And sigma value follows the number of games. Lower value means many game plays and higher rating confidence </body>\n</html>\n")
+ht.write("Rating value follows player's win/draw/lose records. Higher value means higher game skill. And sigma value follows the number of games. Lower value means many game plays and higher rating confidence</p>\n\t</body>\n</html>\n")
 ht.close()
 fname = None
 ht = None
@@ -85,8 +85,8 @@ for k in pm:
     ht.write("<h1>%s</h1>\n" % (k))
     ht.write("<h2>Record: %d-%d Rating: %.2f Sigma: %.2f</h2>\n" % (pwin[k],plos[k],players[k].mu,players[k].sigma))
     ht.write('<div align="right"><a href=index.html>Return to Index</a></div>\n')
-    ht.write('<table class="bordered">\n')
-    ht.write("<thead><tr>\n\t<th>Date</th>\n\t<th>Vs</th>\n\t<th>Result</th>\n\t<th>Score</th>\n\t<th>New Rating</th>\n</tr></thead>\n")
+    ht.write('<table class="bordered" summary="Players game and rating changes">\n')
+    ht.write("<thead>\n\t<tr>\n\t<th>Date</th>\n\t<th>Vs</th>\n\t<th>Result</th>\n\t<th>Score</th>\n\t<th>New Rating</th>\n</tr>\n\t</thead>\n")
     for j in pm[k]:
         ht.write("<tr>\n\t")
         ht.write("<td>%s</td>\n\t" % j[1])
